@@ -1,10 +1,21 @@
+$size: 140px;
+$spacing: 5px;
+
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
   margin: 20px;
 }
 
-ol, ul {
-  padding-left: 30px;
+ol,
+ul {
+  li {
+    margin: 10px;
+  }
+}
+
+.board {
+  width: 520px;
 }
 
 .board-row:after {
@@ -21,15 +32,15 @@ ol, ul {
   background: #fff;
   border: 1px solid #999;
   float: left;
-  font-size: 24px;
+  font-size: $size;
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
+  line-height: $size;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  height: $size;
+  width: $size;
 }
 
 .square:focus {

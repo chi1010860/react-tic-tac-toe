@@ -1,12 +1,15 @@
-import React from "react"
-import "./index.css"
+import React from "react";
+import { Button } from 'react-bootstrap';
+import "./index.scss";
 
-function Square(props) {
-  return (
-    <button className="square" onClick={() => props.onClick()}>
-      {props.value}
-    </button>
-  )
+class Square extends React.Component {
+  render() {
+    return (
+      <button className="square" onClick={() => this.props.onClick()}>
+        {this.props.value}
+      </button>
+    )
+  }
 }
 
 class Board extends React.Component {
@@ -95,7 +98,7 @@ class Game extends React.Component {
       const description = move ? `Go to move #${move}` : "Go to game start"
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{description}</button>
+          <Button size="sm" variant="secondary" onClick={() => this.jumpTo(move)}>{description}</Button>
         </li>
       )
     })
@@ -109,10 +112,10 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <div className="status">{status}</div>
+          <div className="status"><h3>{status}</h3></div>
           <ol>{moves}</ol>
           {status === "Draw" && (
-            <button onClick={() => this.jumpTo(0)}>Restart</button>
+            <Button onClick={() => this.jumpTo(0)}>Restart</Button>
           )}
         </div>
       </div>
