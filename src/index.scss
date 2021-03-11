@@ -1,61 +1,85 @@
-$size: 140px;
+@import url("https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Architects+Daughter&display=swap");
+
 $spacing: 5px;
 
+////////////////////////////////////////////
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Akaya Telivigala", cursive;
   font-size: 14px;
-  margin: 20px;
+  background: #56baed;
+  height: 100vh;
 }
 
-ol,
-ul {
-  li {
-    margin: 10px;
-  }
+#root {
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.board {
-  width: 520px;
-}
-
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-.status {
-  margin-bottom: 10px;
-}
-
-.square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: $size;
-  font-weight: bold;
-  line-height: $size;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  height: $size;
-  width: $size;
-}
-
-.square:focus {
-  outline: none;
-}
-
-.kbd-navigation .square:focus {
-  background: #ddd;
-}
-
-.game {
+.center-content-box {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
 }
 
 .game-info {
-  margin-left: 20px;
+  margin-bottom: 50px;
+  ol,
+  ul {
+    padding-left: 0;
+    li {
+      margin: 10px;
+    }
+  }
+
+  .status {
+    margin-bottom: 10px;
+    min-width: 170px;
+  }
+}
+
+@mixin styling($size) {
+  .board {
+    width: 3 * $size;
+    display: flex;
+    flex-direction: column;
+
+    section {
+      display: flex;
+
+      .square {
+        font-family: "Architects Daughter", cursive;
+        background: #fff;
+        border-radius: 5px;
+        font-size: $size;
+        line-height: $size;
+        margin: 2px;
+        text-align: center;
+        height: $size;
+        width: $size;
+        user-select: none;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        &:active {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  #root {
+    transform: translate(-50%, -80%);
+  }
+  @include styling($size: 80px);
+}
+@media screen and (min-width: 476px) {
+  @include styling($size: 140px);
 }

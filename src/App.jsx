@@ -1,13 +1,13 @@
 import React from "react";
-import { Button } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import "./index.scss";
 
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={() => this.props.onClick()}>
+      <div className="square" onClick={() => this.props.onClick()}>
         {this.props.value}
-      </button>
+      </div>
     )
   }
 }
@@ -24,22 +24,22 @@ class Board extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="board-row">
+      <div className="board">
+        <section>
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
+        </section>
+        <section>
           {this.renderSquare(3)}
           {this.renderSquare(4)}
           {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
+        </section>
+        <section>
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
-        </div>
+        </section>
       </div>
     )
   }
@@ -104,21 +104,25 @@ class Game extends React.Component {
     })
 
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-        </div>
-        <div className="game-info">
-          <div className="status"><h3>{status}</h3></div>
-          <ol>{moves}</ol>
-          {status === "Draw" && (
-            <Button onClick={() => this.jumpTo(0)}>Restart</Button>
-          )}
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col xs={12} md className="center-content-box">
+              <Board
+                squares={current.squares}
+                onClick={(i) => this.handleClick(i)}
+                />
+          </Col>
+          <Col xs={12} md className="center-content-box">
+            <div className="game-info">
+              <div className="status"><h3>{status}</h3></div>
+              <ol>{moves}</ol>
+              {status === "Draw" && (
+                <Button onClick={() => this.jumpTo(0)}>Restart</Button>
+                )}
+            </div>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }
